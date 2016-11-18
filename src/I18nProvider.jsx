@@ -83,7 +83,7 @@ I18nProvider.propTypes = {
 
     /* A `translate({translations, language, message, params})` function.  Should return a string.
      */
-    translate: React.PropTypes.function,
+    translate: React.PropTypes.func,
 
     children: React.PropTypes.any
 };
