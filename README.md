@@ -55,6 +55,7 @@ Props:
   `translate()` function, this should be an object where keys are locales, and values are maps of message keys to
   translated strings.
 * `language` - The locale to translate things into.
+* `noEscape` - If true, then all Translate components will behave like `noEscape` was set by default.
 
 This provides the `i18n` context object.  In most cases, you probably want to use `Translate` to translate messages,
 but in some cases you may want to access this directly:

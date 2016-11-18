@@ -1,4 +1,5 @@
 import React from 'react';
+import CONTEXT_TYPES from './contextTypes';
 
 const FALLBACK_LANGUAGE = 'en';
 
@@ -43,6 +44,8 @@ export default class I18nProvider extends React.Component {
             i18n: {
                 language: this.props.language,
 
+                noEscape: this.props.noEscape,
+
                 /**
                  * Translates a string.
                  *
@@ -85,15 +88,17 @@ I18nProvider.propTypes = {
      */
     translate: React.PropTypes.func,
 
+    // If true, then all <Translate> tags will not escape by default.
+    noEscape: React.PropTypes.bool,
+
     children: React.PropTypes.any
 };
 
 I18nProvider.defaultProps = {
     language: "en",
     translations: {},
-    translate: defaultTranslate
+    translate: defaultTranslate,
+    noEscape: false
 };
 
-I18nProvider.childContextTypes = {
-    i18n: React.PropTypes.object
-};
+I18nProvider.childContextTypes = CONTEXT_TYPES;

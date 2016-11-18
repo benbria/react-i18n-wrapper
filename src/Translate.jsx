@@ -1,6 +1,8 @@
 import React from 'react';
 import CONTEXT_TYPES from './contextTypes';
 
+const isUndefined = x => typeof x === "undefined" || x === null;
+
 /*
  * Renders a translatable string.
  */
@@ -9,7 +11,9 @@ export default function Translate(props, context) {
 
     let message = context.i18n.translate(props.message, props.params);
 
-    if(props.noEscape) {
+    let noEscape = props.noEscape || (context.i18n.noEscape && (props.noEscape || isUndefined(props.noEscape)));
+
+    if(noEscape) {
         return React.createElement(props.typeName, {
             className: props.className,
             dangerouslySetInnerHTML: {__html: message}
@@ -33,6 +37,5 @@ Translate.propTypes = {
 
 Translate.defaultProps = {
     params: {},
-    typeName: 'span',
-    noEscape: false
+    typeName: 'span'
 };
