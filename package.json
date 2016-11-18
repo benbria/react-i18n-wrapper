@@ -1,0 +1,43 @@
+{
+  "name": "react-i18n-wrapper",
+  "version": "0.15.0",
+  "description": "Use your favorite i18n library in React.",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "eslint --ext js --ext jsx src",
+    "build": "babel -s -d build src",
+    "prepublish": "npm run build && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benbria/react-i18n-wrapper.git"
+  },
+  "keywords": [
+    "react",
+    "i18n",
+    "translate",
+    "translations",
+    "internationalization",
+    "l10n"
+  ],
+  "author": "Benbria",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benbria/react-i18n-wrapper/issues"
+  },
+  "homepage": "https://github.com/benbria/react-i18n-wrapper#readme",
+  "dependencies": {
+    "react": "^15.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1"
+  }
+}

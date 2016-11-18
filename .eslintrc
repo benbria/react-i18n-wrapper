@@ -1,0 +1,18 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "comma-dangle": ["error", "never"],
+        "max-len": ["warn", 120],
+        "indent": ["error", 4],
+        "space-infix-ops": "off",
+        "object-curly-spacing": "off",
+        "keyword-spacing": "off",
+        "block-spacing": "off",
+        "quotes": "off",
+        "arrow-parens": "off",
+        "prefer-const": "off",
+        "object-property-newline": "off",
+        "no-else-return": "off",
+        "react/forbid-prop-types": "off"
+    }
+}
