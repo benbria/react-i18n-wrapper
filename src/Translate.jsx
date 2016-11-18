@@ -14,7 +14,14 @@ export default function Translate(props, context) {
     let noEscape = props.noEscape || (context.i18n.noEscape && (props.noEscape || isUndefined(props.noEscape)));
 
     // Pass through extra props to child element.
-    let childProps = Object.assign({}, props, {message: null, params: null, typeName: null, noEscape: null});
+    let childProps = {};
+    Object.keys(props).forEach(key => {
+        if(Translate.propTypes[key]) {
+            // Ignore
+        } else {
+            childProps[key] = props[key];
+        }
+    });
 
     if(noEscape) {
         return React.createElement(props.typeName, Object.assign(childProps, {
