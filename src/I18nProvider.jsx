@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CONTEXT_TYPES from './contextTypes';
 
@@ -76,22 +77,22 @@ export default class I18nProvider extends React.Component {
 
 I18nProvider.propTypes = {
     /* Language to translate to.  Will be passed on to `translate`. */
-    language: React.PropTypes.string,
+    language: PropTypes.string,
 
     /* Aribtrary object containing translation data.  If using the default `translate` function, this is a hash where
      * keys are languages (must include `lang` above), and values are in turn hashes where keys are message keys, and
      * values are translations.
      */
-    translations: React.PropTypes.object,
+    translations: PropTypes.object,
 
     /* A `translate({translations, language, message, params})` function.  Should return a string.
      */
-    translate: React.PropTypes.func,
+    translate: PropTypes.func,
 
     // If true, then all <Translate> tags will not escape by default.
-    noEscape: React.PropTypes.bool,
+    noEscape: PropTypes.bool,
 
-    children: React.PropTypes.any
+    children: PropTypes.any
 };
 
 I18nProvider.defaultProps = {

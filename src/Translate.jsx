@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import CONTEXT_TYPES from './contextTypes';
 
@@ -35,12 +36,12 @@ export default function Translate(props, context) {
 Translate.contextTypes = CONTEXT_TYPES;
 
 Translate.propTypes = {
-    message: React.PropTypes.oneOfType([
-        React.PropTypes.string, React.PropTypes.object
+    message: PropTypes.oneOfType([
+        PropTypes.string, PropTypes.object
     ]).isRequired,
-    params: React.PropTypes.object,
-    noEscape: React.PropTypes.bool,
-    typeName: React.PropTypes.string
+    params: PropTypes.object,
+    noEscape: PropTypes.bool,
+    typeName: PropTypes.string
 };
 
 Translate.defaultProps = {
