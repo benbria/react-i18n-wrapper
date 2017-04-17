@@ -16,13 +16,15 @@ const FALLBACK_LANGUAGE = 'en';
  * @returns {string} translated string.
  */
 function defaultTranslate({translations, message, params, language}) {
-    let translation = message[language] || message[FALLBACK_LANGUAGE] ||
-        translations[language][message] || translations[FALLBACK_LANGUAGE][message] ||
+    let translation = message[language] ||
+        message[FALLBACK_LANGUAGE] ||
+        (translations[language] && translations[language][message]) ||
+        (translations[FALLBACK_LANGUAGE] && translations[FALLBACK_LANGUAGE][message]) ||
         `Untranslated string: ${message}`;
 
     if(params) {
         Object.keys(params).forEach(sub => {
-            let paramValue = params[sub];
+            const paramValue = params[sub];
             translation = translation.replace(new RegExp(`{${sub}}`, 'g'), paramValue);
         });
     }
@@ -58,13 +60,12 @@ export default class I18nProvider extends React.Component {
                 translate: (message, params) => {
                     if(!message) {return "react-i18n-wrapper: No message supplied.";}
 
-                    let answer = this.props.translate({
+                    return this.props.translate({
                         translations: this.props.translations,
                         language: this.props.language,
                         message,
                         params
                     });
-                    return answer;
                 }
             }
         };
