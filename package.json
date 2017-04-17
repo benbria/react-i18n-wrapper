@@ -1,6 +1,6 @@
 {
   "name": "react-i18n-wrapper",
-  "version": "0.15.5",
+  "version": "0.15.6",
   "description": "Use your favorite i18n library in React.",
   "main": "build/index.js",
   "scripts": {
