@@ -17,7 +17,7 @@ describe("Escaping", () => {
                 <Translate message="hello-world"/>
             </I18nProvider>
         );
-        expect(result).to.equal("<span>&lt;h1&gt;Test&lt;/h1&gt;</span>");
+        expect(result).to.equal("&lt;h1&gt;Test&lt;/h1&gt;");
     });
 
     it("should not escape a string with noEscape", () => {
@@ -47,6 +47,6 @@ describe("Escaping", () => {
                 <Translate message="hello-world" noEscape={false}/>
             </I18nProvider>
         );
-        expect(result).to.equal("<span>&lt;h1&gt;Test&lt;/h1&gt;</span>");
+        expect(result).to.equal("&lt;h1&gt;Test&lt;/h1&gt;");
     });
 });

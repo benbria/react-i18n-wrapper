@@ -20,7 +20,7 @@ describe("Translate", () => {
                 <Translate message="hello-world"/>
             </I18nProvider>
         );
-        expect(result).to.equal("<span>Hello World!</span>");
+        expect(result).to.equal("Hello World!");
     });
 
     it("should translate other languages", () => {
@@ -30,6 +30,16 @@ describe("Translate", () => {
                 <Translate message="hello-world"/>
             </I18nProvider>
         );
-        expect(result).to.equal("<span>Bonjour Monde!</span>");
+        expect(result).to.equal("Bonjour Monde!");
+    });
+
+    it("should translate with a tag", () => {
+        let result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={translations}>
+                <Translate typeName="span" message="hello-world"/>
+            </I18nProvider>
+        );
+        expect(result).to.equal("<span>Hello World!</span>");
     });
 });

@@ -25,11 +25,13 @@ export default function Translate(props, context) {
     });
 
     if(noEscape) {
-        return React.createElement(props.typeName, Object.assign(childProps, {
+        return React.createElement(props.typeName || 'span', Object.assign(childProps, {
             dangerouslySetInnerHTML: {__html: message}
         }));
-    } else {
+    } else if(props.typeName) {
         return React.createElement(props.typeName, childProps, message);
+    } else {
+        return message;
     }
 }
 
@@ -46,5 +48,5 @@ Translate.propTypes = {
 
 Translate.defaultProps = {
     params: {},
-    typeName: 'span'
+    typeName: ''
 };
