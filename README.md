@@ -83,8 +83,10 @@ Props:
 * `message` - The message key to translate. This is passed on to your `translate()` function.
 * `params` - Parameters to pass on to the `translate()` function.
 * `noEscape` - If true, the translated message will be rendered without escaping the result.
-* `typeName` - Controls the element created by Translate.  By default, `Translate` will render as a `<span>` element.
-* `className` - Class name to add to the generated element.
+* `typeName` - Controls the element created by Translate.  By default, `Translate` will return a bare string,
+  setting this will wrap the returned value in the specified type.  Note that if `noEscape` is true, this
+  will default to 'span'.
+* `className` - Class name to add to the generated element.  Only used if `typeName` is set.
 
 Default translate() function
 ============================
