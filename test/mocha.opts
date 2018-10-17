@@ -1,6 +1,5 @@
---require babel-register
+--require ts-node/register
 --reporter spec
 --recursive
 --check-leaks
 --globals window,navigator
---growl

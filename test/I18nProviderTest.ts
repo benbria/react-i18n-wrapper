@@ -1,23 +1,22 @@
 import {expect} from 'chai';
-import {I18nProvider} from '../src/index';
+import { defaultTranslate } from '../src/I18nProvider';
 
 describe("I18nProvider", () => {
     describe("defaultTranslate", () => {
-        const defaultTranslate = I18nProvider.defaultProps.translate;
         const translations = {
             en: {'test': 'test en'},
             fr: {'test': 'test fr'}
         };
 
         it('should translate a message', () => {
-            expect(defaultTranslate({translations, message: 'test', language: 'en'}), 'en')
+            expect(defaultTranslate({translations, message: 'test', language: 'en', params: {}}), 'en')
             .to.eql('test en');
 
-            expect(defaultTranslate({translations, message: 'test', language: 'fr'}), 'fr')
+            expect(defaultTranslate({translations, message: 'test', language: 'fr', params: {}}), 'fr')
             .to.eql('test fr');
 
             // Should fallback to en
-            expect(defaultTranslate({translations, message: 'test', language: 'de'}), 'de')
+            expect(defaultTranslate({translations, message: 'test', language: 'de', params: {}}), 'de')
             .to.eql('test en');
         });
 
@@ -26,20 +25,20 @@ describe("I18nProvider", () => {
                 en: 'boop en',
                 fr: 'boop fr'
             };
-            expect(defaultTranslate({translations, message, language: 'en'}), 'en')
+            expect(defaultTranslate({translations, message, language: 'en', params: {}}), 'en')
             .to.eql('boop en');
 
-            expect(defaultTranslate({translations, message, language: 'fr'}), 'fr')
+            expect(defaultTranslate({translations, message, language: 'fr', params: {}}), 'fr')
             .to.eql('boop fr');
 
             // Should fallback to en
-            expect(defaultTranslate({translations, message, language: 'de'}), 'de')
+            expect(defaultTranslate({translations, message, language: 'de', params: {}}), 'de')
             .to.eql('boop en');
         });
 
         it('should show that an untranslated message is untranslated', () => {
             ['en', 'fr', 'de'].forEach(language =>
-                expect(defaultTranslate({translations, message: 'nop', language}), language)
+                expect(defaultTranslate({translations, message: 'nop', language, params: {}}), language)
                 .to.eql('Untranslated string: nop')
             );
         });

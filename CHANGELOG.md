@@ -1,3 +1,5 @@
+# Changelog
+
 ## v16.0.0
 
 * Upgrade to react v16.

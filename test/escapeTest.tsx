@@ -11,7 +11,7 @@ const translations = {
 
 describe("Escaping", () => {
     it("should escape a string", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
                 <Translate message="hello-world"/>
@@ -21,7 +21,7 @@ describe("Escaping", () => {
     });
 
     it("should not escape a string with noEscape", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
                 <Translate message="hello-world" noEscape/>
@@ -31,7 +31,7 @@ describe("Escaping", () => {
     });
 
     it("should not escape a string if I18nProvider has noEscape", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations} noEscape>
                 <Translate message="hello-world"/>
@@ -41,7 +41,7 @@ describe("Escaping", () => {
     });
 
     it("should escape a string if I18nProvider has noEscape but Translate has noEscape=false", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations} noEscape>
                 <Translate message="hello-world" noEscape={false}/>

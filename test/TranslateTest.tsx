@@ -14,7 +14,7 @@ const translations = {
 
 describe("Translate", () => {
     it("should translate a string", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
                 <Translate message="hello-world"/>
@@ -24,7 +24,7 @@ describe("Translate", () => {
     });
 
     it("should translate other languages", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="fr" translations={translations}>
                 <Translate message="hello-world"/>
@@ -34,7 +34,7 @@ describe("Translate", () => {
     });
 
     it("should translate with a tag", () => {
-        let result = ReactDOMServer.renderToStaticMarkup(
+        const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
                 <Translate typeName="span" message="hello-world"/>
