@@ -4,9 +4,45 @@ import { defaultTranslate } from '../src/I18nProvider';
 describe("I18nProvider", () => {
     describe("defaultTranslate", () => {
         const translations = {
-            en: {'test': 'test en'},
-            fr: {'test': 'test fr'}
+            en: {
+                'test': 'test en',
+                'hello': 'Hello {name}'
+            },
+            fr: {
+                'test': 'test fr',
+                'hello': 'Bonjour {name}'
+            }
         };
+
+        it('should translate a message', () => {
+            expect(defaultTranslate({translations, message: 'test', language: 'en', params: {}}), 'en')
+            .to.eql('test en');
+
+            expect(defaultTranslate({translations, message: 'test', language: 'fr', params: {}}), 'fr')
+            .to.eql('test fr');
+
+            // Should fallback to en
+            expect(defaultTranslate({translations, message: 'test', language: 'de', params: {}}), 'de')
+            .to.eql('test en');
+        });
+
+        it('should translate a message with substitutions', () => {
+            expect(defaultTranslate({
+                translations,
+                message: 'hello',
+                language: 'en',
+                params: { name: 'Jason' }
+            }), 'en')
+            .to.eql('Hello Jason');
+
+            expect(defaultTranslate({
+                translations,
+                message: 'hello',
+                language: 'fr',
+                params: { name: 'Jason' }
+            }), 'fr')
+            .to.eql('Bonjour Jason');
+        });
 
         it('should translate a message', () => {
             expect(defaultTranslate({translations, message: 'test', language: 'en', params: {}}), 'en')

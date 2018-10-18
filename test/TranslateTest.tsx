@@ -5,10 +5,12 @@ import {Translate, I18nProvider} from '../src/index';
 
 const translations = {
     en: {
-        "hello-world": "Hello World!"
+        "hello-world": "Hello World!",
+        "greet": "Hello {name}"
     },
     fr: {
-        "hello-world": "Bonjour Monde!"
+        "hello-world": "Bonjour Monde!",
+        "greet": "Bonjour {name}"
     }
 };
 
@@ -21,6 +23,16 @@ describe("Translate", () => {
             </I18nProvider>
         );
         expect(result).to.equal("Hello World!");
+    });
+
+    it("should translate a string with substitutions", () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={translations}>
+                <Translate message="greet" params={{ name: "Jason" }}/>
+            </I18nProvider>
+        );
+        expect(result).to.equal("Hello Jason");
     });
 
     it("should translate other languages", () => {
@@ -42,4 +54,23 @@ describe("Translate", () => {
         );
         expect(result).to.equal("<span>Hello World!</span>");
     });
+
+    it("should translate to an error if no message is supplied", () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={translations}>
+                <Translate message=""/>
+            </I18nProvider>
+        );
+        expect(result).to.equal("react-i18n-wrapper: No message supplied.");
+    });
+
+    it("should error if no I18nProvider", () => {
+        expect(
+            () => ReactDOMServer.renderToStaticMarkup(
+                <Translate message="hello-world"/>
+            )
+        ).to.throw('I18nProvider required');
+    });
+
 });

@@ -12,7 +12,7 @@ const translations = {
     }
 };
 
-describe("Translate", () => {
+describe("withTranslate", () => {
     it("should translate a string", () => {
         function Component(props: {
             i18n: I18nContextType;
