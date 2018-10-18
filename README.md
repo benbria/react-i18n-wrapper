@@ -79,14 +79,14 @@ Props:
 * `className` - Class name to add to the generated element.  Only used if
   `tagName` is set.
 
-### withTranslate
+### withI18n
 
 This is a higher order component which provides the `i18n` context object via
 props.  In most cases, you probably want to  use `Translate` to translate
 messages, but in some cases you may want to access this directly:
 
 ```javascript
-import { withTranslate } from 'react-i18n-wrapper';
+import { withI18n } from 'react-i18n-wrapper';
 
 class MyForm extends React.Component {
     render() {
@@ -94,7 +94,7 @@ class MyForm extends React.Component {
     }
 }
 
-export default withTranslate(MyForm);
+export default withI18n(MyForm);
 ```
 
 Here, `this.props.i18n.translate(message, params)` is a function that can
