@@ -71,6 +71,6 @@ export default function I18nProvider(props : {
             });
         }
     }}>
-        { React.Children.only(props.children) }
+        { props.children }
     </I18nContext.Provider>;
 }
