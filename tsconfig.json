@@ -7,7 +7,7 @@
         "allowJs": false,
         "jsx": "react",                           /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
         "declaration": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "outDir": "./dist",
         "stripInternal": true,
 
