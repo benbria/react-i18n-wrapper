@@ -23,10 +23,10 @@
     "semantic-release": "semantic-release"
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "src/**/*.{ts,tsx}": [
       "tslint -c tslint.json -t stylish"
     ],
-    "test/**/*.ts": [
+    "test/**/*.{ts,tsx}": [
       "tslint -c test/tslint.json -t stylish"
     ]
   },
