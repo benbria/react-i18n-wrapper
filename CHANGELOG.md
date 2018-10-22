@@ -1,3 +1,11 @@
+## [17.0.2](https://github.com/benbria/react-i18n-wrapper/compare/v17.0.1...v17.0.2) (2018-10-22)
+
+
+### Bug Fixes
+
+* Don't build source maps. ([b0088e9](https://github.com/benbria/react-i18n-wrapper/commit/b0088e9))
+* Make withI18n preserve props of wrapped component. ([6cae4f5](https://github.com/benbria/react-i18n-wrapper/commit/6cae4f5))
+
 ## [17.0.1](https://github.com/benbria/react-i18n-wrapper/compare/v17.0.0...v17.0.1) (2018-10-19)
 
 
