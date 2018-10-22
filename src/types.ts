@@ -20,3 +20,7 @@ export interface I18nContextType {
     language: string;
     noEscape: boolean;
 }
+
+export interface WithI18nProps {
+    i18n: I18nContextType;
+}
