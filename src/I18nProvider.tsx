@@ -13,22 +13,25 @@ const FALLBACK_LANGUAGE = 'en';
  * @param params - a map of strings to values.  For example, if 'name' is provided as a key of `params`,
  *   then '{name}' in the translated string will be replaced with the value in `params.name`.
  * @param language - language to translate into.
+ * @param [ignoreMissing] - enable this flag to prevent showing an error when the
+ *   translation is missing in target and fallback languages (returns nothing instead).
  * @returns translated string.
  */
-export function defaultTranslate({ translations, message, params, language } : {
-    translations: { [locale: string] : { [message: string]: string } };
-    message: string | { [locale: string] : string };
+export function defaultTranslate({ translations, message, params, language, ignoreMissing }: {
+    translations: { [locale: string]: { [message: string]: string } };
+    message: string | { [locale: string]: string };
     params: { [key: string]: string };
     language: string;
-}) : string {
+    ignoreMissing?: boolean;
+}): string {
     let translation: string;
-    if(typeof(message) === 'string') {
+    if(typeof (message) === 'string') {
         translation = (translations[language] && translations[language][message]) ||
             (translations[FALLBACK_LANGUAGE] && translations[FALLBACK_LANGUAGE][message]);
     } else {
-        translation = message[language] || message[FALLBACK_LANGUAGE];
+        translation = message[language] || (message[FALLBACK_LANGUAGE]);
     }
-    translation = translation || `Untranslated string: ${message}`;
+    translation = translation || (!ignoreMissing && `Untranslated string: ${message}`) || '';
 
     if(params) {
         Object.keys(params).forEach(sub => {
@@ -49,7 +52,7 @@ export function defaultTranslate({ translations, message, params, language } : {
  * where `translations` is an object where keys are languages (e.g. 'en', 'fr', etc...) and each value is a hash
  * of keys to translated strings.
  */
-export default function I18nProvider(props : {
+export default function I18nProvider(props: {
     language: string;
     translations: any;
     noEscape?: boolean;
@@ -61,14 +64,14 @@ export default function I18nProvider(props : {
     return <I18nContext.Provider value={{
         language: props.language,
         noEscape: props.noEscape || false,
-        translate: (message, params) => {
-            if(!message) { return "react-i18n-wrapper: No message supplied."; }
-            return translate({
+        translate: (message:any, params:any, options?:any) => {
+            if (!message) { return "react-i18n-wrapper: No message supplied."; }
+            return translate(Object.assign({}, options || {}, {
                 translations: props.translations,
                 language: props.language,
                 message,
                 params
-            });
+            }));
         }
     }}>
         { props.children }

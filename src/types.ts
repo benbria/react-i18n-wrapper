@@ -3,6 +3,7 @@ export interface TranslationFunctionParams {
     translations: any;
     message: any;
     params: any;
+    ignoreMissing?: boolean;
 }
 export type TranslateFunction = (params: TranslationFunctionParams) => string;
 
@@ -16,7 +17,7 @@ export interface I18nContextType {
      *   will be replaced with the value in `params.name`.
      * @returns the translated string.
      */
-    translate: (message: any, params?: any) => string;
+    translate: (message: any, params?: any, options?: any) => string;
     language: string;
     noEscape: boolean;
 }
