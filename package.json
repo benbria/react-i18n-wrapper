@@ -1,6 +1,6 @@
 {
   "name": "react-i18n-wrapper",
-  "version": "17.0.2",
+  "version": "17.1.0",
   "description": "Use your favorite i18n library in React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,3 +1,17 @@
+# [17.1.0](https://github.com/benbria/react-i18n-wrapper/compare/v17.0.2...v17.1.0) (2019-02-11)
+
+
+### Bug Fixes
+
+* code inspect change ([1264e95](https://github.com/benbria/react-i18n-wrapper/commit/1264e95))
+* minor cleanup ([78702b0](https://github.com/benbria/react-i18n-wrapper/commit/78702b0))
+* travis ([0e99d59](https://github.com/benbria/react-i18n-wrapper/commit/0e99d59))
+
+
+### Features
+
+* `ignoreMissing` translate option ([844cfb9](https://github.com/benbria/react-i18n-wrapper/commit/844cfb9))
+
 ## [17.0.2](https://github.com/benbria/react-i18n-wrapper/compare/v17.0.1...v17.0.2) (2018-10-22)
 
 
