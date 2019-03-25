@@ -1,3 +1,15 @@
+# [18.0.0](https://github.com/benbria/react-i18n-wrapper/compare/v17.1.0...v18.0.0) (2019-03-25)
+
+
+### Features
+
+* Add `useI18n` hook. ([2117745](https://github.com/benbria/react-i18n-wrapper/commit/2117745))
+
+
+### BREAKING CHANGES
+
+* Use of hooks API requires React v16.8.0 or higher.
+
 # [17.1.0](https://github.com/benbria/react-i18n-wrapper/compare/v17.0.2...v17.1.0) (2019-02-11)
 
 
