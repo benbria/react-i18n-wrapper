@@ -100,6 +100,20 @@ export default withI18n(MyForm);
 Here, `this.props.i18n.translate(message, params)` is a function that can
 translate a string, and `this.props.i18n.language` is the current locale.
 
+### useI18n
+
+An alternative to `withI18n`, `useI18n` provides a React hook which lets you
+call into the translate function directly within your code:
+
+```javascript
+import { useI18n } from 'react-i18n-wrapper';
+
+export function MyForm(props) {
+    const i18n = useI18n();
+    return <textarea placeholder={i18n.translate("placeholder_text")}/>;
+}
+```
+
 ### Default translate() function
 
 The default `translate()` function expects `translations` to be an object where

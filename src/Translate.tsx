@@ -17,8 +17,6 @@ export default function Translate(props : {
 }) {
     return <I18nContext.Consumer>{
         i18n => {
-            if(!i18n) {throw new Error("I18nProvider required");}
-
             const { message, params, noEscape, typeName, tagName, ignoreMissing, ...childProps } = props;
 
             const tagType = tagName || typeName || undefined;
