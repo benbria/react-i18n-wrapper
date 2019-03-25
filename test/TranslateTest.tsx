@@ -55,6 +55,26 @@ describe('Translate', () => {
         expect(result).to.equal('<span>Hello World!</span>');
     });
 
+    it('should show missing translations', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={translations}>
+                <Translate typeName="span" message="i-do-not-exist" />
+            </I18nProvider>
+        );
+        expect(result).to.equal('<span>Untranslated string: i-do-not-exist</span>');
+    });
+
+    it('should not show missing translations if ignoreMissing', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={translations}>
+                <Translate typeName="span" message="i-do-not-exist" ignoreMissing={true} />
+            </I18nProvider>
+        );
+        expect(result).to.equal('<span></span>');
+    });
+
     it('should translate to an error if no message is supplied', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`

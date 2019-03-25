@@ -102,5 +102,20 @@ describe('I18nProvider', () => {
                 ).to.eql('Untranslated string: nop')
             );
         });
+
+        it('should not show that an untranslated message is untranslated if ignoreMissing is true', () => {
+            ['en', 'fr', 'de'].forEach(language =>
+                expect(
+                    defaultTranslate({
+                        translations,
+                        message: 'nop',
+                        language,
+                        params: {},
+                        ignoreMissing: true,
+                    }),
+                    language
+                ).to.eql('')
+            );
+        });
     });
 });
