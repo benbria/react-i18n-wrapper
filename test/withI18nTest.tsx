@@ -1,23 +1,21 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {expect} from 'chai';
-import {withI18n, I18nProvider, I18nContextType} from '../src/index';
+import { expect } from 'chai';
+import { withI18n, I18nProvider, I18nContextType } from '../src/index';
 
 const translations = {
     en: {
-        "hello-world": "Hello World!"
+        'hello-world': 'Hello World!',
     },
     fr: {
-        "hello-world": "Bonjour Monde!"
-    }
+        'hello-world': 'Bonjour Monde!',
+    },
 };
 
-describe("withI18n", () => {
-    it("should translate a string", () => {
-        function Component(props: {
-            i18n: I18nContextType;
-        }) {
-            return <div>{ props.i18n.translate('hello-world') }</div>;
+describe('withI18n', () => {
+    it('should translate a string', () => {
+        function Component(props: { i18n: I18nContextType }) {
+            return <div>{props.i18n.translate('hello-world')}</div>;
         }
 
         const WithI18nComponent = withI18n(Component); // tslint:disable-line variable-name
@@ -28,15 +26,16 @@ describe("withI18n", () => {
                 <WithI18nComponent />
             </I18nProvider>
         );
-        expect(result).to.equal("<div>Hello World!</div>");
+        expect(result).to.equal('<div>Hello World!</div>');
     });
 
-    it("should be typesafe for wrapped props", () => {
-        function Component(props: {
-            i18n: I18nContextType;
-            name: string;
-        }) {
-            return <div>{ props.i18n.translate('hello-world') }, { props.name }</div>;
+    it('should be typesafe for wrapped props', () => {
+        function Component(props: { i18n: I18nContextType; name: string }) {
+            return (
+                <div>
+                    {props.i18n.translate('hello-world')}, {props.name}
+                </div>
+            );
         }
 
         const WithI18nComponent = withI18n(Component); // tslint:disable-line variable-name
@@ -47,6 +46,6 @@ describe("withI18n", () => {
                 <WithI18nComponent name="Jason" />
             </I18nProvider>
         );
-        expect(result).to.equal("<div>Hello World!, Jason</div>");
+        expect(result).to.equal('<div>Hello World!, Jason</div>');
     });
 });

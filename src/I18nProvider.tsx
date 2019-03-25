@@ -17,7 +17,13 @@ const FALLBACK_LANGUAGE = 'en';
  *   translation is missing in target and fallback languages (returns nothing instead).
  * @returns translated string.
  */
-export function defaultTranslate({ translations, message, params, language, ignoreMissing }: {
+export function defaultTranslate({
+    translations,
+    message,
+    params,
+    language,
+    ignoreMissing,
+}: {
     translations: { [locale: string]: { [message: string]: string } };
     message: string | { [locale: string]: string };
     params: { [key: string]: string };
@@ -25,15 +31,16 @@ export function defaultTranslate({ translations, message, params, language, igno
     ignoreMissing?: boolean;
 }): string {
     let translation: string;
-    if(typeof(message) === 'string') {
-        translation = (translations[language] && translations[language][message]) ||
+    if (typeof message === 'string') {
+        translation =
+            (translations[language] && translations[language][message]) ||
             (translations[FALLBACK_LANGUAGE] && translations[FALLBACK_LANGUAGE][message]);
     } else {
         translation = message[language] || message[FALLBACK_LANGUAGE];
     }
     translation = translation || (!ignoreMissing && `Untranslated string: ${message}`) || '';
 
-    if(params) {
+    if (params) {
         Object.keys(params).forEach(sub => {
             const paramValue = params[sub];
             translation = translation.replace(new RegExp(`{${sub}}`, 'g'), paramValue);
@@ -61,19 +68,27 @@ export default function I18nProvider(props: {
 }) {
     const translate = props.translate || defaultTranslate;
 
-    return <I18nContext.Provider value={{
-        language: props.language,
-        noEscape: props.noEscape || false,
-        translate: (message:any, params:any, options?:any) => {
-            if(!message) { return "react-i18n-wrapper: No message supplied."; }
-            return translate(Object.assign({}, options || {}, {
-                translations: props.translations,
+    return (
+        <I18nContext.Provider
+            value={{
                 language: props.language,
-                message,
-                params
-            }));
-        }
-    }}>
-        { props.children }
-    </I18nContext.Provider>;
+                noEscape: props.noEscape || false,
+                translate: (message: any, params: any, options?: any) => {
+                    if (!message) {
+                        return 'react-i18n-wrapper: No message supplied.';
+                    }
+                    return translate(
+                        Object.assign({}, options || {}, {
+                            translations: props.translations,
+                            language: props.language,
+                            message,
+                            params,
+                        })
+                    );
+                },
+            }}
+        >
+            {props.children}
+        </I18nContext.Provider>
+    );
 }

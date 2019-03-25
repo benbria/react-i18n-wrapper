@@ -1,52 +1,52 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {expect} from 'chai';
-import {Translate, I18nProvider} from '../src/index';
+import { expect } from 'chai';
+import { Translate, I18nProvider } from '../src/index';
 
 const translations = {
     en: {
-        "hello-world": "<h1>Test</h1>"
-    }
+        'hello-world': '<h1>Test</h1>',
+    },
 };
 
-describe("Escaping", () => {
-    it("should escape a string", () => {
+describe('Escaping', () => {
+    it('should escape a string', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
-                <Translate message="hello-world"/>
+                <Translate message="hello-world" />
             </I18nProvider>
         );
-        expect(result).to.equal("&lt;h1&gt;Test&lt;/h1&gt;");
+        expect(result).to.equal('&lt;h1&gt;Test&lt;/h1&gt;');
     });
 
-    it("should not escape a string with noEscape", () => {
+    it('should not escape a string with noEscape', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations}>
-                <Translate message="hello-world" noEscape/>
+                <Translate message="hello-world" noEscape />
             </I18nProvider>
         );
-        expect(result).to.equal("<span><h1>Test</h1></span>");
+        expect(result).to.equal('<span><h1>Test</h1></span>');
     });
 
-    it("should not escape a string if I18nProvider has noEscape", () => {
+    it('should not escape a string if I18nProvider has noEscape', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations} noEscape>
-                <Translate message="hello-world"/>
+                <Translate message="hello-world" />
             </I18nProvider>
         );
-        expect(result).to.equal("<span><h1>Test</h1></span>");
+        expect(result).to.equal('<span><h1>Test</h1></span>');
     });
 
-    it("should escape a string if I18nProvider has noEscape but Translate has noEscape=false", () => {
+    it('should escape a string if I18nProvider has noEscape but Translate has noEscape=false', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
             <I18nProvider language="en" translations={translations} noEscape>
-                <Translate message="hello-world" noEscape={false}/>
+                <Translate message="hello-world" noEscape={false} />
             </I18nProvider>
         );
-        expect(result).to.equal("&lt;h1&gt;Test&lt;/h1&gt;");
+        expect(result).to.equal('&lt;h1&gt;Test&lt;/h1&gt;');
     });
 });
