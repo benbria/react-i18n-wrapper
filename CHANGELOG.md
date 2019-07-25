@@ -1,3 +1,10 @@
+## [18.0.1](https://github.com/benbria/react-i18n-wrapper/compare/v18.0.0...v18.0.1) (2019-07-25)
+
+
+### Bug Fixes
+
+* Correctly translate objects with empty strings as result. ([c6ee2ec](https://github.com/benbria/react-i18n-wrapper/commit/c6ee2ec))
+
 # [18.0.0](https://github.com/benbria/react-i18n-wrapper/compare/v17.1.0...v18.0.0) (2019-03-25)
 
 
