@@ -38,7 +38,10 @@ export function defaultTranslate({
     } else {
         translation = message[language] || message[FALLBACK_LANGUAGE];
     }
-    translation = translation || (!ignoreMissing && `Untranslated string: ${message}`) || '';
+    translation =
+        translation !== undefined
+            ? translation
+            : (!ignoreMissing && `Untranslated string: ${message}`) || '';
 
     if (params) {
         Object.keys(params).forEach(sub => {

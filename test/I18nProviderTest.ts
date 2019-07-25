@@ -94,6 +94,17 @@ describe('I18nProvider', () => {
             ).to.eql('boop en');
         });
 
+        it('should translate an object that results in an empty string', () => {
+            const message = {
+                en: '',
+                fr: '',
+            };
+            expect(
+                defaultTranslate({ translations, message, language: 'en', params: {} }),
+                'en'
+            ).to.eql('');
+        });
+
         it('should show that an untranslated message is untranslated', () => {
             ['en', 'fr', 'de'].forEach(language =>
                 expect(
