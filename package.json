@@ -71,7 +71,7 @@
         "lint-staged": "^8.1.0",
         "markdownlint-cli": "^0.14.1",
         "mocha": "^5.2.0",
-        "nyc": "^13.3.0",
+        "nyc": "^14.1.1",
         "prettier": "^1.16.4",
         "pretty-quick": "^1.10.0",
         "react": "^16.8.5",
