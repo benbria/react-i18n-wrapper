@@ -75,6 +75,54 @@ describe('Translate', () => {
         expect(result).to.equal('<span></span>');
     });
 
+    it('should escape content', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={{ en: { withTags: '<h2>foo</h2>' } }}>
+                <Translate message="withTags" />
+            </I18nProvider>
+        );
+        expect(result).to.equal('&lt;h2&gt;foo&lt;/h2&gt;');
+    });
+
+    it('should not escape content', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider language="en" translations={{ en: { withTags: '<h2>foo</h2>' } }}>
+                <Translate message="withTags" noEscape />
+            </I18nProvider>
+        );
+        expect(result).to.equal('<span><h2>foo</h2></span>');
+    });
+
+    it('should not escape content if provider is set noEscape', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider
+                language="en"
+                translations={{ en: { withTags: '<h2>foo</h2>' } }}
+                noEscape
+            >
+                <Translate message="withTags" />
+            </I18nProvider>
+        );
+        expect(result).to.equal('<span><h2>foo</h2></span>');
+    });
+
+    it('should escape content if tag overrides provider', () => {
+        const result = ReactDOMServer.renderToStaticMarkup(
+            // Wrap our top-level component in an `I18nProvider`
+            <I18nProvider
+                language="en"
+                translations={{ en: { withTags: '<h2>foo</h2>' } }}
+                noEscape
+            >
+                <Translate message="withTags" noEscape={false} />
+            </I18nProvider>
+        );
+        expect(result).to.equal('&lt;h2&gt;foo&lt;/h2&gt;');
+    });
+
     it('should translate to an error if no message is supplied', () => {
         const result = ReactDOMServer.renderToStaticMarkup(
             // Wrap our top-level component in an `I18nProvider`
