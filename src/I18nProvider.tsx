@@ -3,6 +3,8 @@ import { TranslateFunction } from './types';
 import { I18nContext } from './context';
 import { defaultTranslate } from './defaultTranslate';
 
+export { defaultTranslate };
+
 /*
  * Component which provides translations and other locale specific data via context.
  * To use, simply wrap your component in an I18nProvider instance:
