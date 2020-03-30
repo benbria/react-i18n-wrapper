@@ -1,7 +1,7 @@
-import React from 'react';
-import { TranslateFunction } from './types';
+import React, { useState } from 'react';
 import { I18nContext } from './context';
 import { defaultTranslate } from './defaultTranslate';
+import { I18nContextType, TranslateFunction } from './types';
 
 export { defaultTranslate };
 
@@ -23,27 +23,26 @@ export default function I18nProvider(props: {
 }) {
     const translate = props.translate || defaultTranslate;
 
-    return (
-        <I18nContext.Provider
-            value={{
-                language: props.language,
-                noEscape: props.noEscape || false,
-                translate: (message: any, params: any, options?: any) => {
-                    if (!message) {
-                        return 'react-i18n-wrapper: No message supplied.';
-                    }
-                    return translate(
-                        Object.assign({}, options || {}, {
-                            translations: props.translations,
-                            language: props.language,
-                            message,
-                            params,
-                        })
-                    );
-                },
-            }}
-        >
-            {props.children}
-        </I18nContext.Provider>
-    );
+    const [language, setLanguage] = useState(props.language);
+
+    const context: I18nContextType = {
+        language,
+        noEscape: props.noEscape || false,
+        setLanguage,
+        translate: (message: any, params: any, options?: any) => {
+            if (!message) {
+                return 'react-i18n-wrapper: No message supplied.';
+            }
+            return translate(
+                Object.assign({}, options || {}, {
+                    translations: props.translations,
+                    language,
+                    message,
+                    params,
+                })
+            );
+        },
+    };
+
+    return <I18nContext.Provider value={context}>{props.children}</I18nContext.Provider>;
 }

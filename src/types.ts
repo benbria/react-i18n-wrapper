@@ -18,6 +18,10 @@ export interface I18nContextType {
      * @returns the translated string.
      */
     translate: (message: any, params?: any, options?: any) => string;
+    /**
+     * Change the language to use when rendering.
+     */
+    setLanguage: (language: string) => void;
     language: string;
     noEscape: boolean;
 }
