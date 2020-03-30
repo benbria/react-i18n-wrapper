@@ -1,3 +1,10 @@
+# [18.1.0](https://github.com/benbria/react-i18n-wrapper/compare/v18.0.1...v18.1.0) (2020-03-30)
+
+
+### Features
+
+* Add i18n.setLanguage(). ([387c16c](https://github.com/benbria/react-i18n-wrapper/commit/387c16c))
+
 ## [18.0.1](https://github.com/benbria/react-i18n-wrapper/compare/v18.0.0...v18.0.1) (2019-07-25)
 
 
