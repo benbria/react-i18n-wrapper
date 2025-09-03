@@ -1,5 +1,6 @@
 {
     "extension": [".ts", ".tsx"],
+    "require": ["ts-node/register"],
     "exclude": ["**/*.d.ts"],
     "include": ["src/**/*.@(ts|tsx)"],
     "reporter": ["html", "text-summary", "lcov"],
